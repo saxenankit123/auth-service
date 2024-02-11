@@ -159,7 +159,7 @@ Response HTTP Codes
 
 - Clone the repository
 ``` bash
-git clone https://github.com/username/project.git
+git clone https://github.com/saxenankit123/auth-service.git
 ```
 - Change directory to auth-service
 ```bash

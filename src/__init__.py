@@ -24,8 +24,7 @@ app.env = config.ENV
 current_dir = os.path.dirname(__file__)
 
 # Construct the absolute path to the configuration file
-LOG_CONFIG_FILE = os.path.join(current_dir, 'config', 'logconfig.ini')
-print(LOG_CONFIG_FILE)
+LOG_CONFIG_FILE = os.path.join(os.path.dirname(current_dir), 'logconfig.ini')
 logging.config.fileConfig(LOG_CONFIG_FILE, disable_existing_loggers=False)
 logger = logging.getLogger("file_logger")
 # Path for our local sql lite database

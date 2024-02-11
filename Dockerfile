@@ -4,8 +4,8 @@ COPY . /auth-service
 RUN apt-get update
 RUN apt-get install -y sqlite3
 RUN pip install --no-cache-dir -r requirements.txt
-RUN rm -f -r /migrations
-RUN rm -f -r /instance
+RUN rm -f -r migrations
+RUN rm -f -r instance
 RUN flask db init
 RUN flask db migrate
 RUN flask db upgrade
