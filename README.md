@@ -58,8 +58,15 @@ curl -i --location --request POST 'http://localhost:3000/signup' \
 ```
 Sample Response
  ```
+HTTP/1.1 201 CREATED
+Server: Werkzeug/3.0.1 Python/3.9.18
+Date: Mon, 12 Feb 2024 06:42:41 GMT
+Content-Type: application/json
+Content-Length: 47
+Connection: close
+
 {
-    "result": "Account successfully created"
+  "result": "Account successfully created"
 }
 ```
 Response HTTP Codes
@@ -84,6 +91,13 @@ curl -i --location --request GET 'http://localhost:3000/authenticate' \
 ```
 Sample Response
  ```
+HTTP/1.1 200 OK
+Server: Werkzeug/3.0.1 Python/3.9.18
+Date: Mon, 12 Feb 2024 06:43:31 GMT
+Content-Type: application/json
+Content-Length: 377
+Connection: close
+
 {
   "access_token": "YOUR_ACCESS_TOKEN",
   "refresh_token": "YOUR_REFRESH_TOKEN",
@@ -91,9 +105,9 @@ Sample Response
 }
 
 ```
-`access_token` - Authentication token that should be used in every subsequent request to access protected routes. **acces_stoken has an expiry of 1 minute.**
+`access_token` - Authentication token that should be used in every subsequent request to access protected routes. **access_stoken** has an expiry of **1 minute.**
 
-`refresh_token` - Token to be used to renew `access_token`. **refresh_token has an expiry of 2 mins.**
+`refresh_token` - Token to be used to renew `access_token`. **refresh_token** has an expiry of **2 mins.**
 
 *How to renew access token ?* - while accessing a protected route, client should first check if the `access_token` is expired. If yes, then client should initiate call to `/refresh-access-token` route to receive new `access_token`. If `refresh_token` is also expired then client should use `/authenticate` to receive new `access_token` and `refresh_token` by passing valid email and password.
 
@@ -107,7 +121,7 @@ Response HTTP Codes
 
 ---
 - ### Fetch user profile
-a protected route to fetch user profile details. You need to pass a valid `access_token` to access this route.
+a protected route to fetch user profile details. You need to pass a valid `access_token` to access this route. If the access_token is not valid or expired then this API will return an authentication error.
 ```curl
 curl -i --location --request GET 'http://localhost:3000/user' \
 --header 'Content-Type: application/json' \
@@ -118,13 +132,14 @@ curl -i --location --request GET 'http://localhost:3000/user' \
 ```
 Sample Response
  ```
-{
-    "data": {
-        "email": "EMAIL_ADDRESS_OF_USER"
-    },
-    "result": "User profile fetched successfully",
-    "status": 200
-}
+HTTP/1.1 200 OK
+Server: Werkzeug/3.0.1 Python/3.9.18
+Date: Mon, 12 Feb 2024 06:57:14 GMT
+Content-Type: application/json
+Content-Length: 98
+Connection: close
+
+{"data": {"email": "EMAIL_ADDRESS_OF_USER"}, "result": "User profile fetched successfully", "status": 200}% 
 ```
 Response HTTP Codes
 
@@ -146,9 +161,16 @@ curl -i --location --request GET 'http://localhost:3000/refresh-access-token' \
 ```
 Sample Response
  ```
+HTTP/1.1 200 OK
+Server: Werkzeug/3.0.1 Python/3.9.18
+Date: Mon, 12 Feb 2024 06:58:21 GMT
+Content-Type: application/json
+Content-Length: 217
+Connection: close
+
 {
-    "access_token": "NEW_ACCESS_TOKEN",
-    "result": "Access token refreshed successful"
+  "access_token": "YOUR_ACCESS_TOKEN",
+  "result": "Access token refreshed successfully"
 }
 ```
 Response HTTP Codes
@@ -174,8 +196,15 @@ curl -i --location --request DELETE 'http://localhost:3000/access-token' \
 ```
 Sample Response
  ```
+HTTP/1.1 200 OK
+Server: Werkzeug/3.0.1 Python/3.9.18
+Date: Mon, 12 Feb 2024 06:59:17 GMT
+Content-Type: application/json
+Content-Length: 39
+Connection: close
+
 {
-    "result": "Access token removed"
+  "result": "Access token removed"
 }
 ```
 Response HTTP Codes
