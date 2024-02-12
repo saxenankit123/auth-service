@@ -5,4 +5,4 @@ migrations/
 .venv
 .DS_Store
 /.idea
-
+/.venv

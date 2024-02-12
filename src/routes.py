@@ -21,11 +21,13 @@ def authenticate():
 def fetch_profile():
     return user_controller.fetch_profile()
 
+
 # GET request to obtain a new access token from refresh token
-@app.route('/refresh-access-token',methods=['GET'])
+@app.route('/refresh-access-token', methods=['GET'])
 def refresh_token():
     return refresh_access_token()
 
-@app.route('/access-token',methods=['DELETE'])
+
+@app.route('/access-token', methods=['DELETE'])
 def remove_token():
     return remove_access_token()
