@@ -189,5 +189,7 @@ Response HTTP Codes
 
 ## Further Improvements
 1. Customize the validation messages:  auth-service uses python library `jsonschema` to validate request payload/parameters. As a further improvement, it can be explored to customize the default validation messages for easy understanding.
-2. Make a shell script to delete the tokens from backend
+2. In current implementation .env is present on the git repo. A safe and secure way should be to store the .env file on the server OR pull the .env file from a service.
+3. In current implementation, database is being accessed from the controller layer. It can be discussed to create service and database layers to make the code more modular.
+3. Make a shell script to delete the tokens from backend
 4. Another way to renew `access_token` be auto-renewal. `auth_service` can auto-renew the `access_token` if the client also sends `refresh_token` in every subsequent call to access protected routes. Method `check_authenticity()` in `middleware.py` implements this but is commented in the current version.
